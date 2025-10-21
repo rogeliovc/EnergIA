@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EnergIA – Demo Visual</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header" role="banner">
+    <div class="header-content container">
+      <a class="logo" href="#inicio" aria-label="EnergIA inicio">Energ<span>IA</span> 💡</a>
+      <nav class="main-nav" aria-label="Principal">
+        <a href="#acerca">Acerca</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#impacto">Impacto</a>
+        <a href="#ods7">ODS 7</a>
+        <a href="#perfiles">Perfiles</a>
+        <a href="#temas">Aprende</a>
+        <a href="#chatbot">Chatbot</a>
+        <a href="#equipo">Equipo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- Hero / Acerca -->
+    <section id="acerca" class="hero anim" role="region" aria-labelledby="acerca-titulo">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 id="acerca-titulo">EnergIA: eficiencia energética al alcance</h1>
+          <p>
+            Asistente educativo que traduce datos del ambiente en acciones simples para reducir consumo eléctrico.
+            Funciona en web y móvil. Pensado para hogares, escuelas y comunidades.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#demo" id="cta-demo" aria-label="Probar demo de 60 segundos">Probar demo de 60s</a>
+            <a class="btn btn-secondary" href="#ods7">Ver contribución ODS 7</a>
+          </div>
+        </div>
+        <div class="hero-badges">
+          <div class="badge">Público: Educativo y comunitario</div>
+          <div class="badge">Sensores: Temp/Humedad + Luz</div>
+          <div class="badge">Plataforma: PWA responsive</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard (maquetado) -->
+    <section id="dashboard" class="dashboard anim" role="region" aria-labelledby="dashboard-titulo">
+      <div class="container">
+        <h2 id="dashboard-titulo">Dashboard de Sensores (demo)</h2>
+        <p class="lead">Lecturas simuladas para explicar decisiones rápidas de ahorro.</p>
+
+        <!-- Tarjeta ZONA / DAC (visual) -->
+        <aside class="dac-card" aria-label="Tarjeta de zona y estatus DAC">
+          <div class="dac-row">
+            <div><strong>Zona:</strong> 1C</div>
+            <div><strong>Límite DAC:</strong> 250 kWh/mes</div>
+            <div><strong>Estatus:</strong> Dentro del límite</div>
+          </div>
+        </aside>
+
+        <div class="sensor-grid">
+          <article class="sensor-card" aria-label="Temperatura ambiente">
+            <div class="sensor-icon" aria-hidden="true">🌡️</div>
+            <h3>Temperatura</h3>
+            <div class="sensor-value" id="val-temp">26&nbsp;°C</div>
+            <div class="bar-wrap" aria-hidden="true"><div id="bar-temp" class="bar" style="width:60%"></div></div>
+            <p id="desc-temp">Rango cómodo. No actives A/C.</p>
+          </article>
+
+          <article class="sensor-card" aria-label="Humedad relativa">
+            <div class="sensor-icon" aria-hidden="true">💧</div>
+            <h3>Humedad</h3>
+            <div class="sensor-value" id="val-hum">65&nbsp;%</div>
+            <div class="bar-wrap" aria-hidden="true"><div id="bar-hum" class="bar" style="width:65%"></div></div>
+            <p id="desc-hum">Humedad media. Ventila 5–10 min.</p>
+          </article>
+
+          <article class="sensor-card" aria-label="Luz ambiental">
+            <div class="sensor-icon" aria-hidden="true">☀️</div>
+            <h3>Luz Ambiental</h3>
+            <div class="sensor-value" id="val-lux">800&nbsp;lux</div>
+            <div class="bar-wrap" aria-hidden="true"><div id="bar-luz" class="bar" style="width:80%"></div></div>
+            <p id="desc-lux">Luz natural suficiente. Apaga focos.</p>
+          </article>
+        </div>
+
+        <!-- Controles de simulación (solo UI) -->
+        <section id="demo" class="simuladores" aria-labelledby="sim-titulo">
+          <h3 id="sim-titulo">Simular sensores</h3>
+          <div class="sliders">
+            <label for="slider-temp">Temperatura (°C)</label>
+            <input type="range" id="slider-temp" min="18" max="35" value="26" />
+            <label for="slider-hum">Humedad (%)</label>
+            <input type="range" id="slider-hum" min="20" max="90" value="65" />
+            <label for="slider-lux">Luz (lux)</label>
+            <input type="range" id="slider-lux" min="50" max="1200" value="800" />
+          </div>
+        </section>
+
+        <!-- Recomendación inteligente -->
+        <div class="recommendation" role="status" aria-live="polite">
+          <div class="recommendation-icon" aria-hidden="true">🧠</div>
+          <div class="recommendation-text">
+            <h3>Recomendación Inteligente</h3>
+            <p id="reco-text">
+              Luz natural alta detectada. Si apagas 2 focos de 60W por 4 horas, ahorras aprox. <strong>0.48 kWh</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impacto estimado -->
+    <section id="impacto" class="impacto anim" role="region" aria-labelledby="impacto-titulo">
+      <div class="container">
+        <h2 id="impacto-titulo">Impacto estimado</h2>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-num" id="kpi-usuarios" data-target="120">0</div>
+            <div class="kpi-label">Usuarios impactados</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-num" id="kpi-ahorro" data-target="12">0%</div>
+            <div class="kpi-label">Ahorro promedio simulado</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-num" id="kpi-co2" data-target="0.8">0.0&nbsp;kg</div>
+            <div class="kpi-label">CO₂ evitado por día*</div>
+          </div>
+        </div>
+        <p class="kpi-footnote">*Cálculos ilustrativos para efectos de presentación.</p>
+      </div>
+    </section>
+
+    <!-- ODS 7 -->
+    <section id="ods7" class="ods anim" role="region" aria-labelledby="ods7-titulo">
+      <div class="container">
+        <h2 id="ods7-titulo">Contribución al ODS 7</h2>
+        <div class="ods-card">
+          <div class="ods-icon" aria-hidden="true">⚡</div>
+          <p>
+            La propuesta apoya el Objetivo de Desarrollo Sostenible 7: garantizar energía asequible y no contaminante,
+            promoviendo educación energética, reducción de desperdicio y decisiones informadas en hogares y escuelas.
+          </p>
+          <a class="link" href="https://mexico.un.org/es/sdgs/7" target="_blank" rel="noopener">Saber más sobre ODS 7</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Perfiles de uso -->
+    <section id="perfiles" class="perfiles anim" role="region" aria-labelledby="perfiles-titulo">
+      <div class="container">
+        <h2 id="perfiles-titulo">Perfiles de uso</h2>
+        <div class="perfil-grid">
+          <article class="perfil-card">
+            <h3>Hogar urbano</h3>
+            <ul>
+              <li>Clima: cálido</li>
+              <li>Reto: aire acondicionado frecuente</li>
+              <li>Resultado: −13% consumo simulado</li>
+            </ul>
+          </article>
+          <article class="perfil-card">
+            <h3>Escuela pública</h3>
+            <ul>
+              <li>Clima: templado</li>
+              <li>Reto: iluminación diurna constante</li>
+              <li>Resultado: −10% consumo simulado</li>
+            </ul>
+          </article>
+          <article class="perfil-card">
+            <h3>Centro comunitario</h3>
+            <ul>
+              <li>Clima: cálido-húmedo</li>
+              <li>Reto: confort en salas comunes</li>
+              <li>Resultado: −15% consumo simulado</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Temas + Chatbot -->
+    <section class="topics-chat container anim" role="region" aria-labelledby="temas-titulo">
+      <div class="topics-grid">
+        <article id="temas" class="topic-card">
+          <h2 id="temas-titulo">Temas clave del proyecto</h2>
+          <h3>Eficiencia energética en el hogar 🔌</h3>
+          <p>Prácticas sencillas para bajar el gasto eléctrico sin perder confort.</p>
+
+          <h3>Confort térmico y ahorro</h3>
+          <p>Balance entre temperatura agradable y uso responsable de climatización.</p>
+
+          <h3>Aprovechamiento de luz natural 🍃</h3>
+          <p>Optimiza la luz del día y reduce iluminación artificial innecesaria.</p>
+
+          <h3>Impacto y sostenibilidad 🌎</h3>
+          <p>Aportes al ODS 7: energía asequible y no contaminante.</p>
+        </article>
+
+        <!-- Chatbot reemplazando el bloque original de FAQs -->
+        <article id="chatbot" class="topic-card chatbot-section" aria-labelledby="chatbot-titulo">
+          <h2 id="chatbot-titulo">Chatbot EnergIA</h2>
+          <p>Resuelve dudas rápidas sobre consumo, confort e iluminación.</p>
+
+          <div class="chatbot">
+            <div class="chat-window" id="chat-window" role="log" aria-live="polite" aria-label="Mensajes del chatbot"></div>
+
+            <form class="chat-input" id="chat-form" autocomplete="off">
+              <input id="chat-text" name="q" type="text" placeholder="Escribe tu pregunta..." aria-label="Mensaje para el chatbot" required />
+              <button class="btn btn-primary" type="submit" aria-label="Enviar">Enviar</button>
+            </form>
+
+            <div class="chat-suggest">
+              <button type="button" class="chip" data-q="¿Qué es la tarifa DAC y cómo evitarla?">DAC</button>
+              <button type="button" class="chip" data-q="¿Cuándo conviene apagar focos si hay luz natural?">Luz natural</button>
+              <button type="button" class="chip" data-q="¿Temperatura ideal para ahorrar sin perder confort?">Confort</button>
+              <button type="button" class="chip" data-q="¿Cuánto CO₂ evito si ahorro 1 kWh?">CO₂</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Equipo y créditos -->
+    <section id="equipo" class="equipo anim" role="region" aria-labelledby="equipo-titulo">
+      <div class="container">
+        <h2 id="equipo-titulo">Equipo y créditos</h2>
+        <p><strong>Proyecto EnergIA</strong> · CUCEI · Universidad de Guadalajara · Ingeniería en Computación</p>
+        <p>Integrantes: [Nombres del equipo] · Asesor: [Nombre del asesor] · Año: 2025</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p><strong>Proyecto EnergIA</strong> · Herramienta educativa para un futuro sostenible.</p>
+      <p>Alineado con el
+        <a href="https://www.un.org/sustainabledevelopment/es/energy/" target="_blank" rel="noopener">Objetivo de Desarrollo Sostenible 7</a>.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
