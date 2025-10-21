@@ -1,0 +1,359 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnergIA - Demo Visual</title>
+    <style>
+        /* --- Estilos Generales --- */
+        :root {
+            --color-primario: #2A9D8F; /* Verde azulado */
+            --color-secundario: #E9C46A; /* Amarillo */
+            --color-fondo: #F4F7F5;
+            --color-texto: #333333;
+            --color-blanco: #FFFFFF;
+            --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --borde-radio: 12px;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: var(--color-primario);
+            font-weight: 600;
+        }
+
+        /* --- Encabezado y Navegación --- */
+        header {
+            background-color: var(--color-blanco);
+            box-shadow: var(--sombra-suave);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--color-primario);
+        }
+
+        .logo span {
+            color: var(--color-secundario);
+        }
+        
+        nav a {
+            color: var(--color-primario);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--color-secundario);
+        }
+
+        /* --- Sección Principal: Dashboard de Sensores --- */
+        .dashboard {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--color-primario), #26a99c);
+        }
+        
+        .dashboard h1 {
+            color: var(--color-blanco);
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        .dashboard p {
+            color: var(--color-blanco);
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .sensor-card {
+            background-color: var(--color-blanco);
+            padding: 30px;
+            border-radius: var(--borde-radio);
+            box-shadow: var(--sombra-suave);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .sensor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .sensor-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .sensor-card h3 {
+            margin-bottom: 5px;
+            font-size: 1.5em;
+        }
+        
+        .sensor-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--color-texto);
+        }
+
+        /* --- Sección de Recomendaciones --- */
+        .recommendation {
+            background-color: #e8f5e9; /* Un verde muy claro */
+            border-left: 8px solid var(--color-primario);
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: var(--borde-radio);
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .recommendation-icon {
+            font-size: 3em;
+            color: var(--color-primario);
+        }
+        
+        .recommendation-text h3 {
+            margin-top: 0;
+        }
+
+        .recommendation-text p {
+            margin-bottom: 0;
+            font-size: 1.1em;
+        }
+        
+        /* --- Sección de Temas y Chatbot --- */
+        .topics-grid {
+             display: grid;
+             grid-template-columns: 1fr 1fr;
+             gap: 40px;
+             margin-top: 40px;
+        }
+
+        .topic-card {
+            background: var(--color-blanco);
+            padding: 30px;
+            border-radius: var(--borde-radio);
+            box-shadow: var(--sombra-suave);
+        }
+        
+        .chatbot-section h2, .topics-card h2 {
+             border-bottom: 3px solid var(--color-secundario);
+             padding-bottom: 10px;
+             margin-bottom: 20px;
+        }
+        
+        .chatbot-section details {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .chatbot-section summary {
+            padding: 15px;
+            font-weight: 600;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .chatbot-section ul {
+            padding: 15px 15px 15px 40px;
+            margin: 0;
+            background: var(--color-blanco);
+        }
+        
+        .chatbot-section li {
+            margin-bottom: 10px;
+        }
+
+        /* --- Pie de Página --- */
+        footer {
+            background-color: var(--color-texto);
+            color: var(--color-blanco);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: var(--color-secundario);
+            text-decoration: none;
+        }
+
+        /* --- Adaptabilidad (Responsive Design) --- */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            nav {
+                margin-top: 15px;
+            }
+            .dashboard h1 {
+                font-size: 2em;
+            }
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">Energ<span>IA</span>💡</div>
+            <nav>
+                <a href="#dashboard">Dashboard</a>
+                <a href="#temas">Aprende Más</a>
+                <a href="#chatbot">Chatbot</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="dashboard" class="dashboard">
+            <h1>Tu Asistente de Eficiencia Energética</h1>
+            <p>Información en tiempo real de tu entorno para ayudarte a tomar decisiones inteligentes y reducir tu consumo eléctrico.</p>
+            <div class="container">
+                <div class="sensor-grid">
+                    <div class="sensor-card">
+                        <div class="sensor-icon">🌡️</div>
+                        <h3>Temperatura</h3>
+                        <div class="sensor-value">26°C</div>
+                        <p>El ambiente es agradable. No es necesario el aire acondicionado.</p>
+                    </div>
+
+                    <div class="sensor-card">
+                        <div class="sensor-icon">💧</div>
+                        <h3>Humedad</h3>
+                        <div class="sensor-value">65%</div>
+                        <p>La humedad es moderada. Ventilar puede mejorar el confort.</p>
+                    </div>
+
+                    <div class="sensor-card">
+                        <div class="sensor-icon">☀️</div>
+                        <h3>Luz Ambiental</h3>
+                        <div class="sensor-value">800 Lux</div>
+                        <p>Excelente luz natural. ¡Apaga las luces interiores para ahorrar!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="recommendation">
+                <div class="recommendation-icon">🧠</div>
+                <div class="recommendation-text">
+                    <h3>Recomendación Inteligente</h3>
+                    <p>Detecto una excelente iluminación natural. Si abres las cortinas y apagas 2 focos de 60W durante las próximas 4 horas, podrías ahorrar aproximadamente <strong>0.48 kWh</strong>.</p>
+                </div>
+            </div>
+
+            <div class="topics-grid">
+                <div id="temas" class="topic-card">
+                    <h2>Temas Clave del Proyecto</h2>
+                    <h3>Eficiencia Energética en el Hogar 🔌</h3>
+                    <p>Fomentamos prácticas sencillas para reducir tu gasto eléctrico sin sacrificar tu comodidad, analizando el uso de tus aparatos.</p>
+                    
+                    <h3>Confort Térmico vs. Ahorro 쾌</h3>
+                    <p>Te ayudamos a encontrar el balance perfecto entre una temperatura agradable y el uso eficiente de la climatización.</p>
+
+                    <h3>Aprovechamiento de la Luz Natural 🍃</h3>
+                    <p>Usamos datos de luz para mostrarte cómo optimizar el uso de la luz solar y reducir la dependencia de la iluminación artificial.</p>
+
+                     <h3>Impacto y ODS 7 🌎</h3>
+                    <p>Cada acción de ahorro contribuye al Objetivo de Desarrollo Sostenible 7: Energía asequible y no contaminante para todos.</p>
+                </div>
+
+                <div id="chatbot" class="topic-card chatbot-section">
+                    <h2>Pregúntale a Nuestro Asistente</h2>
+                    <p>El chatbot de EnergIA puede responder a tus dudas sobre:</p>
+                    <details>
+                        <summary><strong>Consumo Energético</strong></summary>
+                        <ul>
+                            <li>¿Por qué mi recibo de luz llega tan alto?</li>
+                            <li>¿Qué es la tarifa DAC y cómo la evito?</li>
+                            <li>¿Qué aparatos consumen más energía?</li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary><strong>Confort y Climatización</strong></summary>
+                        <ul>
+                            <li>¿Cuál es la temperatura ideal para ahorrar?</li>
+                            <li>¿Cuánto gasta un aire acondicionado?</li>
+                            <li>¿Cómo influye la humedad en mi consumo?</li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary><strong>Iluminación</strong></summary>
+                        <ul>
+                            <li>¿Cuándo debo apagar los focos según la luz del día?</li>
+                            <li>¿Qué tipo de focos consumen menos?</li>
+                            <li>Consejos para aprovechar la luz natural.</li>
+                        </ul>
+                    </details>
+                     <details>
+                        <summary><strong>Sostenibilidad</strong></summary>
+                        <ul>
+                            <li>¿Cómo el ahorro de energía ayuda al planeta?</li>
+                            <li>¿Qué es el ODS 7 y cuáles son sus metas?</li>
+                            <li>¿Cuánto CO₂ dejo de emitir al ahorrar energía?</li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><strong>Proyecto EnergIA</strong> | Una herramienta educativa para un futuro sostenible.</p>
+        <p>Desarrollado en CUCEI, Universidad de Guadalajara.</p>
+        <p>Alineado con el <a href="https://www.un.org/sustainabledevelopment/es/energy/" target="_blank">Objetivo de Desarrollo Sostenible 7</a>.</p>
+    </footer>
+
+</body>
+</html>
