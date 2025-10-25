@@ -1,0 +1,79 @@
+.nav-toggle-checkbox {
+  display: none;
+}
+
+/* Oculta el icono de hamburguesa en desktop */
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  z-index: 1001; 
+}
+
+.hamburger-line {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-primario);
+  margin: 5px 0;
+  transition: var(--transicion-rapida);
+}
+
+@media (max-width: 768px) {
+  
+  .nav-toggle-label {
+    display: block;
+  }
+
+  nav.main-nav {
+    display: none; 
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    right: 0;
+    
+    background-color: var(--color-blanco);
+    box-shadow: var(--sombra-suave);
+    
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem;
+    
+    width: 100%;
+    margin-top: -1px; 
+    border-bottom: var(--borde-fino);
+
+    box-sizing: border-box;
+  }
+
+  .nav-toggle-checkbox:checked ~ nav.main-nav {
+    display: flex; 
+  }
+
+  /* Animación de "X" para la hamburguesa */
+  .nav-toggle-checkbox:checked + .nav-toggle-label .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+  .nav-toggle-checkbox:checked + .nav-toggle-label .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle-checkbox:checked + .nav-toggle-label .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+
+  nav.main-nav a {
+    padding: 0.75rem 0.5rem;
+    font-size: 1rem;
+  }
+  nav.main-nav a::after {
+    display: none; 
+  }
+  .site-header {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .site-header.site-header--hidden {
+    transform: translateY(-100%);
+  }
+
+}

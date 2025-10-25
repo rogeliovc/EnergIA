@@ -98,3 +98,47 @@ actualizarDashboard();
   // saludo inicial
   addMsg('Hola, soy EnergIA. Pregunta por DAC, luz natural o confort para tips rápidos.');
 })();
+
+// --- Menú Responsivo y Header Autohide ---
+document.addEventListener('DOMContentLoaded', () => {
+  
+  const navCheckbox = document.getElementById('nav-toggle');
+  const mainNav = document.querySelector('.main-nav');
+  const siteHeader = document.querySelector('.site-header'); 
+
+  let lastScrollTop = 0;
+
+  if (!siteHeader) {
+    console.error('No se encontró .site-header');
+    return;
+  }
+
+  if (navCheckbox && mainNav) {
+    const navLinks = mainNav.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navCheckbox.checked = false;
+      });
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    
+    if (navCheckbox && navCheckbox.checked) {
+      navCheckbox.checked = false;
+    }
+
+    let currentScroll = window.scrollY || document.documentElement.scrollTop;
+
+
+    if (currentScroll > lastScrollTop && currentScroll > 100) { 
+      siteHeader.classList.add('site-header--hidden');
+    } else {
+      siteHeader.classList.remove('site-header--hidden');
+    }
+
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    
+  }, false);
+
+});
