@@ -99,19 +99,14 @@ actualizarDashboard();
   addMsg('Hola, soy EnergIA. Pregunta por DAC, luz natural o confort para tips rápidos.');
 })();
 
-// --- Menú Responsivo y Header Autohide ---
+// --- Eventos del DOM ---
 document.addEventListener('DOMContentLoaded', () => {
   
+  // --- Menú Responsivo y Header Autohide ---
   const navCheckbox = document.getElementById('nav-toggle');
   const mainNav = document.querySelector('.main-nav');
   const siteHeader = document.querySelector('.site-header'); 
-
   let lastScrollTop = 0;
-
-  if (!siteHeader) {
-    console.error('No se encontró .site-header');
-    return;
-  }
 
   if (navCheckbox && mainNav) {
     const navLinks = mainNav.querySelectorAll('a');
@@ -123,22 +118,71 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addEventListener('scroll', () => {
-    
     if (navCheckbox && navCheckbox.checked) {
       navCheckbox.checked = false;
     }
-
     let currentScroll = window.scrollY || document.documentElement.scrollTop;
-
-
     if (currentScroll > lastScrollTop && currentScroll > 100) { 
       siteHeader.classList.add('site-header--hidden');
     } else {
       siteHeader.classList.remove('site-header--hidden');
     }
-
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    
   }, false);
+  // --- Fin: Menú Responsivo y Header Autohide ---
+
+
+  // --- Inicio: Código para animar KPIs ---
+  
+  const kpiSection = document.getElementById('impacto');
+  let observer;
+
+  const animateValue = (el, start, end, duration, decimals) => {
+    let startTime = null;
+    const step = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      let currentValue = progress * (end - start) + start;
+      
+      if (decimals > 0) {
+        el.textContent = currentValue.toFixed(decimals);
+      } else {
+        el.textContent = Math.floor(currentValue);
+      }
+
+      if (el.id === 'kpi-ahorro') el.textContent += '%';
+      if (el.id === 'kpi-co2') el.textContent += ' kg';
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  };
+
+  const startCounter = (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        
+        document.querySelectorAll('.kpi-num').forEach(kpi => {
+          const target = +kpi.getAttribute('data-target');
+          const decimals = +kpi.getAttribute('data-decimals') || 0;
+          if (kpi.textContent.includes(target)) return; 
+          animateValue(kpi, 0, target, 1500, decimals);
+        });
+        
+        observer.unobserve(kpiSection); 
+      }
+    });
+  };
+
+  observer = new IntersectionObserver(startCounter, {
+    root: null,
+    threshold: 0.5 
+  });
+
+  observer.observe(kpiSection);
+
+  // --- Fin: Código para animar KPIs ---
 
 });
