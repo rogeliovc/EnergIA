@@ -75,5 +75,12 @@
   .site-header.site-header--hidden {
     transform: translateY(-100%);
   }
+  .impact-grid {
+    grid-template-columns: 1fr; /* Una columna en móviles */
+    gap: 15px;
+  }
+  .impact-item .result-total {
+    font-size: 3rem; /* Más grande en una columna */
+  }
 
 }

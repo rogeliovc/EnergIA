@@ -313,6 +313,234 @@ nav a.active::after {
   color: var(--color-primario);
 }
 
+/* ---------- CALCULADORA DE CONSUMO ---------- */
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin-bottom: var(--espaciado-lg);
+}
+
+.calc-card {
+  background-color: var(--color-blanco);
+  border-radius: var(--borde-radio);
+  box-shadow: var(--sombra-suave);
+  padding: 20px;
+}
+
+.calc-card h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  color: var(--color-texto);
+}
+
+.calc-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.calc-controls input[type="range"] {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.calc-controls .calc-value {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-primario);
+  min-width: 55px; /* Evita que el layout "salte" */
+  text-align: right;
+}
+
+.calculator-results {
+  background-color: var(--color-blanco);
+  border-radius: var(--borde-radio);
+  box-shadow: var(--sombra-suave);
+  padding: var(--espaciado-md);
+  margin-top: var(--espaciado-md);
+}
+
+.calculator-results h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.result-total {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  text-align: center;
+  margin-bottom: var(--espaciado-md);
+}
+
+.result-total span {
+  font-size: 3.5rem;
+}
+
+.calculator-results h4 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: var(--espaciado-sm);
+  color: var(--color-texto-secundario);
+}
+
+.result-graph {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  background-color: var(--color-fondo);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.graph-bar {
+  height: 100%;
+  transition: width 0.3s ease-in-out;
+}
+/* Colores de barras */
+#bar-tv { background-color: var(--color-primario); }
+#bar-micro { background-color: var(--color-secundario); }
+#bar-laptop { background-color: var(--color-terciario); }
+#bar-vampiro { background-color: var(--color-alerta); }
+#bar-refri { background-color: #3498db; }
+#bar-consola { background-color: #9b59b6; } 
+#bar-foco { background-color: #f1c40f; } 
+
+
+.result-co2 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-texto-secundario);
+  text-align: center;
+  margin-top: -15px;
+  margin-bottom: 25px;
+}
+
+.result-co2 span {
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+/* Input de Costo */
+.cost-input-wrapper {
+  text-align: center;
+  margin-bottom: var(--espaciado-md);
+  padding: 10px;
+  background-color: var(--color-fondo);
+  border-radius: 8px;
+}
+.cost-input-wrapper label {
+  font-weight: 500;
+  margin-right: 10px;
+  color: var(--color-texto-secundario);
+}
+.cost-input-wrapper input {
+  width: 80px;
+  padding: 8px;
+  border: var(--borde-fino);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-primario);
+}
+/* ---------- IMPACTO AMBIENTAL ---------- */
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: var(--espaciado-md);
+}
+.impact-item {
+  text-align: center;
+  padding: 15px 5px;
+  background: var(--color-fondo);
+  border-radius: var(--borde-radio);
+}
+.impact-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-texto-secundario);
+  display: block;
+}
+.impact-item .result-total {
+  font-size: 2.5rem; 
+  margin: 5px 0;
+}
+.impact-unit {
+  font-size: 0.9rem;
+  color: var(--color-texto-secundario);
+}
+
+.calculator-results h3 {
+  margin-bottom: var(--espaciado-sm);
+}
+.result-total {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.result-env {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-texto);
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: var(--espaciado-md);
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+.result-env .env-icon {
+  font-size: 1.5rem;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.result-env span {
+  font-weight: 700;
+  color: var(--color-primario);
+  font-size: 1.3rem;
+}
+
+/* ========= INICIO: ESTILOS DE LEYENDA ========= */
+.result-legend {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  gap: 15px;
+  margin-top: var(--espaciado-md); 
+  padding: 0 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--color-texto-secundario);
+}
+
+.legend-color {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  margin-right: 6px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+#color-tv { background-color: var(--color-primario); }
+#color-micro { background-color: var(--color-secundario); }
+#color-laptop { background-color: var(--color-terciario); }
+#color-vampiro { background-color: var(--color-alerta); }
+#color-refri { background-color: #3498db; }
+#color-consola { background-color: #9b59b6; }
+#color-foco { background-color: #f1c40f; }
+/* ========= FIN: ESTILOS DE LEYENDA ========= */
+
+
 /* ---------- IMPACTO ---------- */
 .impacto {
   background: var(--color-fondo);
@@ -459,6 +687,7 @@ nav a.active::after {
   color: var(--color-secundario);
   text-decoration: none;
 }
+
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
