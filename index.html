@@ -26,6 +26,7 @@
       <nav class="main-nav" aria-label="Principal">
         <a href="#acerca">Acerca</a>
         <a href="#dashboard">Dashboard</a>
+        <a href="#calculadora">Calculadora</a>
         <a href="#impacto">Impacto</a>
         <a href="#ods7">ODS 7</a>
         <a href="#perfiles">Perfiles</a>
@@ -47,7 +48,7 @@
             Funciona en web y móvil. Pensado para hogares, escuelas y comunidades.
           </p>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="#demo" id="cta-demo" aria-label="Probar demo de 60 segundos">Probar demo de 60s</a>
+            <a class="btn btn-primary" href="#dashboard" id="cta-demo" aria-label="Probar demo de 60 segundos">Probar demo de 60s</a>
             <a class="btn btn-secondary" href="#ods7">Ver contribución ODS 7</a>
           </div>
         </div>
@@ -125,6 +126,151 @@
         </div>
       </div>
     </section>
+
+    <!-- Calculadora de consumo por aparato -->
+    <section id="calculadora" class="dashboard anim" role="region" aria-labelledby="calc-titulo">
+      <div class="container">
+        <h2 id="calc-titulo">Calculadora de Consumo por Aparato</h2>
+        <p class="lead">Estima cuánta energía (kWh) consumen tus aparatos al día con tarifa DAC (México, 2025).</p>
+
+        <div class="calculator-grid">
+          <article class="calc-card">
+            <h3>📺 Televisor (LED 50")</h3>
+            <div class="calc-controls">
+              <input type="range" class="calc-slider" id="slider-tv" data-watts="120" min="0" max="10" value="2" step="0.5">
+              <span class="calc-value" id="val-tv">2.0 hrs</span>
+            </div>
+          </article>
+
+          <article class="calc-card">
+            <h3>🔥 Microondas</h3>
+            <div class="calc-controls">
+              <input type="range" class="calc-slider" id="slider-micro" data-watts="1100" min="0" max="1.5" value="0.5" step="0.1">
+              <span class="calc-value" id="val-micro">0.5 hrs</span>
+            </div>
+          </article>
+
+          <article class="calc-card">
+            <h3>💻 Laptop (en uso)</h3>
+            <div class="calc-controls">
+              <input type="range" class="calc-slider" id="slider-laptop" data-watts="65" min="0" max="10" value="4" step="0.5">
+              <span class="calc-value" id="val-laptop">4.0 hrs</span>
+            </div>
+          </article>
+
+          <article class="calc-card">
+            <h3>🧊 Refrigerador*</h3>
+            <div class="calc-controls">
+              <input type="range" class="calc-slider" id="slider-refri" data-watts="150" min="24" max="24" value="24" step="1" disabled>
+              <span class="calc-value" id="val-refri">24.0 hrs</span>
+            </div>
+          </article>
+
+          <article class="calc-card">
+            <h3>🎮 Consola (en juego)</h3>
+            <div class="calc-controls">
+              <input type="range" class="calc-slider" id="slider-consola" data-watts="160" min="0" max="8" value="1" step="0.5">
+              <span class="calc-value" id="val-consola">1.0 hrs</span>
+            </div>
+          </article>
+
+          <article class="calc-card">
+            <h3>💡 Foco LED (x3)</h3>
+            <div class="calc-controls">
+              <input type="range" class="calc-slider" id="slider-foco" data-watts="30" min="0" max="12" value="4" step="0.5">
+              <span class="calc-value" id="val-foco">4.0 hrs</span>
+            </div>
+          </article>
+
+          <article class="calc-card">
+            <h3>🔌 Aparatos en Standby*</h3>
+            <div class="calc-controls">
+              <input type="range" class="calc-slider" id="slider-vampiro" data-watts="20" min="24" max="24" value="24" step="1" disabled>
+              <span class="calc-value" id="val-vampiro">24.0 hrs</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="calculator-results">
+          <h4>Desglose del consumo:</h4>
+          <div class="result-graph" aria-label="Gráfica de desglose de consumo">
+            <div class="graph-bar" id="bar-tv"></div>
+            <div class="graph-bar" id="bar-micro"></div>
+            <div class="graph-bar" id="bar-laptop"></div>
+            <div class="graph-bar" id="bar-refri"></div>
+            <div class="graph-bar" id="bar-consola"></div>
+            <div class="graph-bar" id="bar-foco"></div>
+            <div class="graph-bar" id="bar-vampiro"></div>
+          </div>
+
+          <div class="result-legend"> 
+            <div class="legend-item">
+              <span class="legend-color" id="color-tv"></span>Televisor</div>
+            <div class="legend-item">
+              <span class="legend-color" id="color-micro"></span>Microondas</div>
+            <div class="legend-item">
+              <span class="legend-color" id="color-laptop"></span>Laptop</div>
+            <div class="legend-item">
+              <span class="legend-color" id="color-refri"></span>Refrigerador</div>
+            <div class="legend-item">
+              <span class="legend-color" id="color-consola"></span>Consola</div>
+            <div class="legend-item">
+              <span class="legend-color" id="color-foco"></span>Focos LED</div>
+            <div class="legend-item">
+              <span class="legend-color" id="color-vampiro"></span>Aparatos en Standby</div>
+          </div>
+          <p class="kpi-footnote" style="margin-top: 15px;">*Refrigerador: Equivale a un consumo promedio de 150 Watts diarios.</p>
+          <p class="kpi-footnote" style="margin-top: 15px;">*Aparatos en Standby: Se refiere a un cálculo estimado de 4 aparatos en modo de espera.</p>
+
+          <div class="cost-input-wrapper">
+            <label for="costo-kwh">Costo por kWh (Tarifa DAC, MXN):*</label>
+            <input type="number" id="costo-kwh" value="6.5" step="0.1" min="0">
+          </div>
+
+          <h3>Impacto Total Diario Estimado:</h3>
+
+          <div class="impact-grid">
+            <div class="impact-item">
+              <span class="impact-label">Consumo</span>
+              <div class="result-total" id="calc-total-kwh">0.00</div>
+              <span class="impact-unit">kWh</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-label">Costo Aprox.</span>
+              <div class="result-total" id="calc-total-cost">$0.00</div>
+              <span class="impact-unit">MXN/DÍA</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-label">Huella CO₂</span>
+              <div class="result-total" id="calc-total-co2">0.00</div>
+              <span class="impact-unit">kg CO₂*</span>
+            </div>
+          </div>
+
+          <div class="result-env">
+            <span class="env-icon">📱</span>
+            <span id="calc-env-smartphones">0</span> cargas de smartphone
+          </div>
+
+          <p class="kpi-footnote" style="margin-top: 15px;">
+            *Costo basado en Tarifa DAC promedio nacional (6.5 MXN/kWh). Fuente: CFE, octubre 2025.
+          </p>
+          <p class="kpi-footnote" style="margin-top: 15px;">
+            *Factor de emisión (CFE, México): 0.423 kg CO₂/kWh.
+          </p>
+        </div>
+        <div class="recommendation-container">
+          <div class="recommendation" role="alert" style="margin-top: 25px;">
+            <div class="recommendation-icon" aria-hidden="true">💡</div>
+            <div class="recommendation-text">
+              <h3 style="color: var(--color-primario);">Tip de Ahorro:</h3>
+              <p id="calc-tip-text">Mueve los sliders para ver el impacto de cada aparato.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="topics-chat container anim" role="region" aria-labelledby="temas-titulo">
 
     <!-- Impacto estimado -->
     <section id="impacto" class="impacto anim" role="region" aria-labelledby="impacto-titulo">
