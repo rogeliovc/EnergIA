@@ -762,3 +762,62 @@ nav a.active::after {
 }
 .chip:hover{ border-color: var(--color-primario); color: var(--color-primario); }
 
+/* ---------- EQUIPO (VERSIÓN MINIMALISTA) ---------- */
+.equipo {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: var(--color-blanco); /* Fondo limpio */
+  border-top: var(--borde-fino); /* Separador sutil */
+}
+
+/* Título de la sección */
+#equipo-titulo {
+  margin-bottom: var(--espaciado-lg);
+  color: var(--color-primario);
+}
+
+/* Contenedor de los nombres */
+.equipo-contenido p {
+  font-size: 1.05rem;
+  color: var(--color-texto);
+  line-height: 1.6;
+  margin: 0.25rem 0; /* Espaciado mínimo entre nombres */
+}
+
+/* Título "Equipo de Desarrollo" y "Asesores" */
+.equipo-contenido p strong {
+  color: var(--color-texto-secundario);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Espacio antes de "Asesores" */
+.equipo-asesores {
+  margin-top: var(--espaciado-md) !important;
+}
+
+/* Contenedor de logos */
+.logos-equipo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: var(--espaciado-lg) auto; /* Espacio arriba y abajo */
+  flex-wrap: wrap;
+  max-width: 500px;
+}
+
+.logos-equipo img {
+  max-height: 50px; /* Logos más pequeños y sutiles */
+  width: auto;
+  object-fit: contain;
+  opacity: 0.7;
+  filter: grayscale(50%); /* Menos color, más sutil */
+}
+
+/* Párrafo del año */
+.equipo-year {
+  margin-top: var(--espaciado-md);
+  color: var(--color-texto-secundario);
+  font-size: 0.9rem;
+}

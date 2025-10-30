@@ -44,18 +44,17 @@
         <div class="hero-copy">
           <h1 id="acerca-titulo">EnergIA: eficiencia energética al alcance</h1>
           <p>
-            Asistente educativo que traduce datos del ambiente en acciones simples para reducir consumo eléctrico.
-            Funciona en web y móvil. Pensado para hogares, escuelas y comunidades.
+            Transformamos datos complejos de tu entorno en acciones claras y simples para que reduzcas tu factura de luz. EnergIA te guía en tiempo real, desde cualquier dispositivo. Ideal para hogares, escuelas y negocios.
           </p>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="#dashboard" id="cta-demo" aria-label="Probar demo de 60 segundos">Probar demo de 60s</a>
+            <a class="btn btn-primary" href="#dashboard" id="cta-demo" aria-label="Probar demo de 60 segundos">Prueba el panel ambiental</a>
             <a class="btn btn-secondary" href="#ods7">Ver contribución ODS 7</a>
           </div>
         </div>
         <div class="hero-badges">
-          <div class="badge">Público: Educativo y comunitario</div>
-          <div class="badge">Sensores: Temp/Humedad + Luz</div>
-          <div class="badge">Plataforma: PWA responsive</div>
+          <div class="badge">Enfoque: Hogares y Comunidades</div>
+          <div class="badge">Datos: Temperatura, Humedad y Luz</div>
+          <div class="badge">Acceso: Web y Móvil (PWA)</div>
         </div>
       </div>
     </section>
@@ -63,8 +62,11 @@
     <!-- Dashboard (maquetado) -->
     <section id="dashboard" class="dashboard anim" role="region" aria-labelledby="dashboard-titulo">
       <div class="container">
-        <h2 id="dashboard-titulo">Dashboard de Sensores (demo)</h2>
-        <p class="lead">Lecturas simuladas para explicar decisiones rápidas de ahorro.</p>
+        <h2 id="dashboard-titulo">Panel ambiental (demo)</h2>   
+        <p class="lead">Visualiza cómo el ambiente de tu espacio impacta tu consumo y obtén recomendaciones al instante.</p> 
+        <p class="lead">Este componente interactivo permite simular sensores de temperatura, humedad y luz, ofreciendo una experiencia 
+          visual dinámica donde el usuario puede ajustar los valores y ver en tiempo real cómo la plataforma reacciona con recomendaciones 
+          personalizadas. Ideal para explorar el comportamiento del sistema sin necesidad de hardware físico.</p>
 
         <!-- Tarjeta ZONA / DAC (visual) -->
         <aside class="dac-card" aria-label="Tarjeta de zona y estatus DAC">
@@ -219,15 +221,15 @@
             <div class="legend-item">
               <span class="legend-color" id="color-vampiro"></span>Aparatos en Standby</div>
           </div>
-          <p class="kpi-footnote" style="margin-top: 15px;">*Refrigerador: Equivale a un consumo promedio de 150 Watts diarios.</p>
-          <p class="kpi-footnote" style="margin-top: 15px;">*Aparatos en Standby: Se refiere a un cálculo estimado de 4 aparatos en modo de espera.</p>
+          <p class="kpi-footnote" style="margin-top: 15px;">*Refrigerador: Equivale a un consumo promedio de 150 Watts operando 24h.</p>
+          <p class="kpi-footnote" style="margin-top: 15px;">*Aparatos en Standby: Estimamos 4 aparatos en modo de espera.</p>
 
           <div class="cost-input-wrapper">
             <label for="costo-kwh">Costo por kWh (Tarifa DAC, MXN):*</label>
             <input type="number" id="costo-kwh" value="6.5" step="0.1" min="0">
           </div>
 
-          <h3>Impacto Total Diario Estimado:</h3>
+          <h3>Tu Impacto Total (Estimación Diaria):</h3>
 
           <div class="impact-grid">
             <div class="impact-item">
@@ -299,12 +301,12 @@
     <!-- ODS 7 -->
     <section id="ods7" class="ods anim" role="region" aria-labelledby="ods7-titulo">
       <div class="container">
-        <h2 id="ods7-titulo">Contribución al ODS 7</h2>
+        <h2 id="ods7-titulo">Comprometidos con el ODS 7</h2>
         <div class="ods-card">
           <div class="ods-icon" aria-hidden="true">⚡</div>
           <p>
-            La propuesta apoya el Objetivo de Desarrollo Sostenible 7: garantizar energía asequible y no contaminante,
-            promoviendo educación energética, reducción de desperdicio y decisiones informadas en hogares y escuelas.
+            EnergIA contribuye activamente al ODS 7 (Energía asequible y no contaminante) al fomentar una cultura de eficiencia energética. Damos a las personas 
+            las herramientas para tomar decisiones informadas, reduciendo el desperdicio y promoviendo el acceso a la energía sostenible.
           </p>
           <a class="link" href="https://mexico.un.org/es/sdgs/7" target="_blank" rel="noopener">Saber más sobre ODS 7</a>
         </div>
@@ -316,28 +318,28 @@
       <div class="container">
         <h2 id="perfiles-titulo">Perfiles de uso</h2>
         <div class="perfil-grid">
-          <article class="perfil-card">
-            <h3>Hogar urbano</h3>
+        <article class="perfil-card">
+          <h3>Hogar en Zona Cálida</h3>
+          <ul>
+            <li>Contexto: Clima cálido</li>
+            <li>Desafío Principal: Aire acondicionado frecuente</li>
+            <li>Ahorro Potencial: −13% consumo simulado</li>
+          </ul>
+        </article>
+        <article class="perfil-card">
+            <h3>Escuela Diurna</h3>
             <ul>
-              <li>Clima: cálido</li>
-              <li>Reto: aire acondicionado frecuente</li>
-              <li>Resultado: −13% consumo simulado</li>
+              <li>Contexto: Clima templado</li>
+              <li>Desafío Principal: Iluminación diurna constante</li>
+              <li>Ahorro Potencial: −10% consumo simulado</li>
             </ul>
           </article>
           <article class="perfil-card">
-            <h3>Escuela pública</h3>
+            <h3>Oficina o Centro Comunitario</h3>
             <ul>
-              <li>Clima: templado</li>
-              <li>Reto: iluminación diurna constante</li>
-              <li>Resultado: −10% consumo simulado</li>
-            </ul>
-          </article>
-          <article class="perfil-card">
-            <h3>Centro comunitario</h3>
-            <ul>
-              <li>Clima: cálido-húmedo</li>
-              <li>Reto: confort en salas comunes</li>
-              <li>Resultado: −15% consumo simulado</li>
+              <li>Contexto: Clima cálido-húmedo</li>
+              <li>Desafío Principal: Confort en salas comunes</li>
+              <li>Ahorro Potencial: −15% consumo simulado</li>
             </ul>
           </article>
         </div>
@@ -388,12 +390,28 @@
 
     <!-- Equipo y créditos -->
     <section id="equipo" class="equipo anim" role="region" aria-labelledby="equipo-titulo">
-      <div class="container">
-        <h2 id="equipo-titulo">Equipo y créditos</h2>
-        <p><strong>Proyecto EnergIA</strong> · CUCEI · Universidad de Guadalajara · Ingeniería en Computación</p>
-        <p>Integrantes: [Nombres del equipo] · Asesor: [Nombre del asesor] · Año: 2025</p>
+    <div class="container">
+      <h2 id="equipo-titulo">Detrás de EnergIA</h2>
+      
+      <div class="equipo-contenido">
+        <p><strong>Equipo de Desarrollo (UdeG CUCEI):</strong></p>
+        <p>Osiris Josue Carrillo Galvan</p>
+        <p>Rogelio Valdez Cuevas</p>
+        <p>Carlos Alberto Mariscal Romo</p>
+        
+        <p class="equipo-asesores"><strong>Asesores (IBM):</strong></p>
+        <p>Juan Antonio Ortega</p>
+        <p>Ana Isabel Rodriguez Gonzales</p>
       </div>
-    </section>
+
+      <div class="logos-equipo">
+        <img src="https://www.cusur.udg.mx/es/sites/default/files/manual_de_estilo/logos/udeg/logo_udeg_color_horizontal_sin%20benemerita%201.png" alt="Logo Universidad de Guadalajara">
+        <img src="https://animationvisarts.com/wp-content/uploads/2021/01/IBM-Logo-Design-1972-present.png" alt="Logo IBM">
+      </div>
+
+      <p class="equipo-year">Proyecto 2025</p>
+    </div>
+  </section>
   </main>
 
   <!-- Footer -->
