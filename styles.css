@@ -447,6 +447,110 @@ nav a.active::after {
   text-align: center;
   color: var(--color-primario);
 }
+
+.calc-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px; /* Separación de los controles */
+}
+
+.calc-card-header h3 {
+  margin: 0; /* Quitar margen por defecto del h3 */
+  flex-grow: 1; /* El título ocupa el espacio sobrante */
+  font-size: 1.1rem;
+  color: var(--color-texto);
+}
+
+.calc-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-primario);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0; 
+  transition: background-color 0.2s;
+}
+
+.calc-toggle:checked {
+  background-color: var(--color-primario);
+}
+
+.calc-toggle:checked::after {
+  content: '✔';
+  color: var(--color-blanco);
+  position: absolute;
+  font-size: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.calc-toggle:disabled {
+  border-color: #ccc;
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.calc-toggle:disabled:checked {
+    background-color: #ccc;
+}
+
+.info-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-texto-secundario);
+  color: var(--color-blanco);
+  font-weight: 700;
+  font-family: serif; /* 'i' cursiva de serif se ve bien */
+  font-style: italic;
+  cursor: help;
+  font-size: 14px;
+  flex-shrink: 0; /* Evita que se encoja */
+}
+
+.info-icon::before {
+  content: attr(data-tooltip); /* Lee el texto del atributo */
+  position: absolute;
+  bottom: 125%; /* Aparece arriba del icono */
+  right: 0;
+  min-width: 90px;
+  padding: 5px 10px;
+  background-color: var(--color-texto);
+  color: var(--color-blanco);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-family: var(--fuente); /* Regresar a la fuente normal */
+  font-style: normal;
+  text-align: center;
+  
+  /* Oculto por defecto */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.info-icon:hover::before {
+  /* Mostrar al hacer hover */
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.calc-card h3 {
+  margin-top: 0;
+  margin-bottom: 0; /* Se maneja con el gap del header */
+}
+
 /* ---------- IMPACTO AMBIENTAL ---------- */
 .impact-grid {
   display: grid;
@@ -762,60 +866,56 @@ nav a.active::after {
 }
 .chip:hover{ border-color: var(--color-primario); color: var(--color-primario); }
 
-/* ---------- EQUIPO (VERSIÓN MINIMALISTA) ---------- */
+/* ---------- EQUIPO  ---------- */
 .equipo {
   text-align: center;
   padding: 60px 20px;
-  background-color: var(--color-blanco); /* Fondo limpio */
-  border-top: var(--borde-fino); /* Separador sutil */
+  background-color: var(--color-blanco); 
+  border-top: var(--borde-fino);
 }
 
-/* Título de la sección */
+
 #equipo-titulo {
   margin-bottom: var(--espaciado-lg);
   color: var(--color-primario);
 }
 
-/* Contenedor de los nombres */
+
 .equipo-contenido p {
   font-size: 1.05rem;
   color: var(--color-texto);
   line-height: 1.6;
-  margin: 0.25rem 0; /* Espaciado mínimo entre nombres */
+  margin: 0.25rem 0; 
 }
 
-/* Título "Equipo de Desarrollo" y "Asesores" */
 .equipo-contenido p strong {
   color: var(--color-texto-secundario);
   font-weight: 600;
   font-size: 1.1rem;
 }
 
-/* Espacio antes de "Asesores" */
 .equipo-asesores {
   margin-top: var(--espaciado-md) !important;
 }
 
-/* Contenedor de logos */
 .logos-equipo {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 40px;
-  margin: var(--espaciado-lg) auto; /* Espacio arriba y abajo */
+  margin: var(--espaciado-lg) auto;
   flex-wrap: wrap;
   max-width: 500px;
 }
 
 .logos-equipo img {
-  max-height: 50px; /* Logos más pequeños y sutiles */
+  max-height: 50px;
   width: auto;
   object-fit: contain;
   opacity: 0.7;
-  filter: grayscale(50%); /* Menos color, más sutil */
+  filter: grayscale(50%);
 }
 
-/* Párrafo del año */
 .equipo-year {
   margin-top: var(--espaciado-md);
   color: var(--color-texto-secundario);

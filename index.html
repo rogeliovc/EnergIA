@@ -137,7 +137,11 @@
 
         <div class="calculator-grid">
           <article class="calc-card">
-            <h3>📺 Televisor (LED 50")</h3>
+            <div class="calc-card-header">
+              <input type="checkbox" class="calc-toggle" id="toggle-tv" data-slider-id="slider-tv" checked>
+              <h3>📺 Televisor (LED 50")</h3>
+              <span class="info-icon" data-tooltip="0.00 kWh" id="info-tv">i</span>
+            </div>
             <div class="calc-controls">
               <input type="range" class="calc-slider" id="slider-tv" data-watts="120" min="0" max="10" value="2" step="0.5">
               <span class="calc-value" id="val-tv">2.0 hrs</span>
@@ -145,7 +149,11 @@
           </article>
 
           <article class="calc-card">
-            <h3>🔥 Microondas</h3>
+            <div class="calc-card-header">
+              <input type="checkbox" class="calc-toggle" id="toggle-micro" data-slider-id="slider-micro" checked>
+              <h3>🔥 Microondas</h3>
+              <span class="info-icon" data-tooltip="0.00 kWh" id="info-micro">i</span>
+            </div>
             <div class="calc-controls">
               <input type="range" class="calc-slider" id="slider-micro" data-watts="1100" min="0" max="1.5" value="0.5" step="0.1">
               <span class="calc-value" id="val-micro">0.5 hrs</span>
@@ -153,7 +161,11 @@
           </article>
 
           <article class="calc-card">
-            <h3>💻 Laptop (en uso)</h3>
+            <div class="calc-card-header">
+              <input type="checkbox" class="calc-toggle" id="toggle-laptop" data-slider-id="slider-laptop" checked>
+              <h3>💻 Laptop (en uso)</h3>
+              <span class="info-icon" data-tooltip="0.00 kWh" id="info-laptop">i</span>
+            </div>
             <div class="calc-controls">
               <input type="range" class="calc-slider" id="slider-laptop" data-watts="65" min="0" max="10" value="4" step="0.5">
               <span class="calc-value" id="val-laptop">4.0 hrs</span>
@@ -161,7 +173,11 @@
           </article>
 
           <article class="calc-card">
-            <h3>🧊 Refrigerador*</h3>
+            <div class="calc-card-header">
+              <input type="checkbox" class="calc-toggle" id="toggle-refri" data-slider-id="slider-refri" checked>
+              <h3>🧊 Refrigerador</h3>
+              <span class="info-icon" data-tooltip="0.00 kWh" id="info-refri">i</span>
+            </div>
             <div class="calc-controls">
               <input type="range" class="calc-slider" id="slider-refri" data-watts="150" min="24" max="24" value="24" step="1" disabled>
               <span class="calc-value" id="val-refri">24.0 hrs</span>
@@ -169,7 +185,11 @@
           </article>
 
           <article class="calc-card">
-            <h3>🎮 Consola (en juego)</h3>
+            <div class="calc-card-header">
+              <input type="checkbox" class="calc-toggle" id="toggle-consola" data-slider-id="slider-consola" checked>
+              <h3>🎮 Consola (en juego)</h3>
+              <span class="info-icon" data-tooltip="0.00 kWh" id="info-consola">i</span>
+            </div>
             <div class="calc-controls">
               <input type="range" class="calc-slider" id="slider-consola" data-watts="160" min="0" max="8" value="1" step="0.5">
               <span class="calc-value" id="val-consola">1.0 hrs</span>
@@ -177,7 +197,11 @@
           </article>
 
           <article class="calc-card">
-            <h3>💡 Foco LED (x3)</h3>
+            <div class="calc-card-header">
+              <input type="checkbox" class="calc-toggle" id="toggle-foco" data-slider-id="slider-foco" checked>
+              <h3>💡 Foco LED (x3)</h3>
+              <span class="info-icon" data-tooltip="0.00 kWh" id="info-foco">i</span>
+            </div>
             <div class="calc-controls">
               <input type="range" class="calc-slider" id="slider-foco" data-watts="30" min="0" max="12" value="4" step="0.5">
               <span class="calc-value" id="val-foco">4.0 hrs</span>
@@ -185,7 +209,11 @@
           </article>
 
           <article class="calc-card">
-            <h3>🔌 Aparatos en Standby*</h3>
+            <div class="calc-card-header">
+              <input type="checkbox" class="calc-toggle" id="toggle-vampiro" data-slider-id="slider-vampiro" checked>
+              <h3>🔌 Aparatos en Standby*</h3>
+              <span class="info-icon" data-tooltip="0.00 kWh" id="info-vampiro">i</span>
+            </div>
             <div class="calc-controls">
               <input type="range" class="calc-slider" id="slider-vampiro" data-watts="20" min="24" max="24" value="24" step="1" disabled>
               <span class="calc-value" id="val-vampiro">24.0 hrs</span>
@@ -221,7 +249,6 @@
             <div class="legend-item">
               <span class="legend-color" id="color-vampiro"></span>Aparatos en Standby</div>
           </div>
-          <p class="kpi-footnote" style="margin-top: 15px;">*Refrigerador: Equivale a un consumo promedio de 150 Watts operando 24h.</p>
           <p class="kpi-footnote" style="margin-top: 15px;">*Aparatos en Standby: Estimamos 4 aparatos en modo de espera.</p>
 
           <div class="cost-input-wrapper">

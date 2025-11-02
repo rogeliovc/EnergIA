@@ -231,6 +231,23 @@ document.addEventListener('DOMContentLoaded', () => {
       default: 'Mueve los sliders para ver el impacto de cada aparato y encontrar dónde puedes ahorrar más.'
     };
 
+    const toggles = document.querySelectorAll('.calc-toggle');
+    
+    toggles.forEach(toggle => {
+      const sliderId = toggle.getAttribute('data-slider-id');
+      const slider = document.getElementById(sliderId);
+      if (slider && !slider.disabled) { 
+        slider.disabled = !toggle.checked;
+      }
+
+      toggle.addEventListener('input', () => {
+        if (slider && !slider.disabled) {
+          slider.disabled = !toggle.checked;
+        }
+        actualizarCalculadora();
+      });
+    });
+
     function actualizarCalculadora() {
       let totalKwh = 0;
       let maxKwh = 0;
@@ -245,14 +262,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (valSpan) valSpan.textContent = `${hours.toFixed(1)} hrs`;
 
         const kwh = (watts * hours) / 1000;
-        applianceKwh[id] = kwh;
-        totalKwh += kwh;
 
-        if (kwh > maxKwh && id !== 'refri' && id !== 'vampiro') {
-          maxKwh = kwh;
-          maxAppliance = id;
+        const infoIcon = document.getElementById(`info-${id}`);
+        if (infoIcon) {
+          infoIcon.setAttribute('data-tooltip', `${kwh.toFixed(3)} kWh`);
+        }
+
+        const toggle = document.getElementById(`toggle-${id}`);
+        
+        if (toggle && toggle.checked) {
+          applianceKwh[id] = kwh;
+          totalKwh += kwh;
+
+          if (kwh > maxKwh && id !== 'refri' && id !== 'vampiro') {
+            maxKwh = kwh;
+            maxAppliance = id;
+          }
+        } else {
+          applianceKwh[id] = 0;
         }
       });
+
 
       if (maxKwh === 0) {
         if (applianceKwh['refri'] > applianceKwh['vampiro']) {
@@ -277,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (totalKwh > 0) {
         for (const id in applianceKwh) {
           const bar = document.getElementById(`bar-${id}`);
-          const percentage = (applianceKwh[id] / totalKwh) * 100;
+          const percentage = (applianceKwh[id] / totalKwh) * 100; 
           if (bar) {
             bar.style.width = `${percentage}%`;
             bar.setAttribute('aria-label', `${id}: ${percentage.toFixed(0)}%`);
