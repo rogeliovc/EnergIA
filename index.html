@@ -9,33 +9,29 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="responsive.css" />
   <script src="app.js" defer></script>
+  <script>
+    // Cargar el header
+    fetch('header.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+        
+        // Asegurar que el menú móvil funcione después de cargar el header
+        const navToggle = document.getElementById('nav-toggle');
+        if (navToggle) {
+          navToggle.addEventListener('change', function() {
+            document.body.style.overflow = this.checked ? 'hidden' : '';
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Error al cargar el header:', error);
+      });
+  </script>
 </head>
 <body>
-  <!-- Header / Nav -->
-  <header class="site-header" role="banner">
-    <div class="header-content container">
-      <a class="logo" href="#inicio" aria-label="EnergIA inicio">Energ<span>IA</span> 💡</a>
-      
-      <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
-      <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </label>
-
-      <nav class="main-nav" aria-label="Principal">
-        <a href="#acerca">Acerca</a>
-        <a href="#dashboard">Dashboard</a>
-        <a href="#calculadora">Calculadora</a>
-        <a href="#impacto">Impacto</a>
-        <a href="#ods7">ODS 7</a>
-        <a href="#perfiles">Perfiles</a>
-        <a href="#temas">Aprende</a>
-        <a href="#chatbot">Chatbot</a>
-        <a href="#equipo">Equipo</a>
-      </nav>
-    </div>
-  </header>
+  <!-- Header se carga dinámicamente desde header.html -->
+  <div id="header-placeholder"></div>
 
   <main id="inicio">
     <!-- Hero / Acerca -->
