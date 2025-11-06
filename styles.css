@@ -32,13 +32,18 @@
   --espaciado-xl: 4rem;
 }
 
+/* Global box-sizing to prevent width + padding overflow issues */
+*, *::before, *::after { box-sizing: border-box; }
+
 /* ---------- RESETEO Y BASE ---------- */
+html { overflow-x: hidden; }
 body {
   font-family: var(--fuente);
   margin: 0;
   background-color: var(--color-fondo);
   color: var(--color-texto);
   line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll on small screens */
 }
 
 .container {
@@ -819,6 +824,10 @@ nav a.active::after {
   .kpi-grid {
     flex-direction: column;
   }
+
+  /* Ensure CTA fills line and doesn't overflow at tablet widths */
+  .hero-cta { width: 100%; }
+  .hero-cta .btn { flex: 1 1 100%; }
 }
 /* ===== Chatbot ===== */
 .chatbot { display:grid; gap:16px; }
@@ -1018,6 +1027,7 @@ nav a.active::after {
   gap: 15px;
   margin-top: 30px;
   animation: fadeInUp 0.6s ease-out 0.5s both;
+  flex-wrap: wrap; /* Ensure CTA buttons wrap on smaller widths */
 }
 
 .btn {
@@ -1031,6 +1041,9 @@ nav a.active::after {
   border: none;
   cursor: pointer;
   text-align: center;
+  box-sizing: border-box; /* Include padding in width calculations */
+  max-width: 100%; /* Avoid overflowing parent width */
+  white-space: normal; /* Allow wrapping for long CTA text */
 }
 
 .btn-primary {
@@ -1276,7 +1289,15 @@ nav a.active::after {
   .feature span {
     font-size: 0.7rem;
   }
+
+  /* Slightly smaller padding for buttons on very small screens */
+  .btn {
+    padding: 10px 16px;
+  }
 }
+
+/* Make media responsive to avoid overflow */
+img, video, canvas { max-width: 100%; height: auto; display: block; }
 
 .hero-badges {
   display: flex;
