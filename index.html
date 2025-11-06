@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="responsive.css" />
   <script src="app.js" defer></script>
+  <script src="js/hero-animations.js" defer></script>
   <script>
     // Cargar el header
     fetch('header.html')
@@ -36,21 +37,94 @@
   <main id="inicio">
     <!-- Hero / Acerca -->
     <section id="acerca" class="hero anim" role="region" aria-labelledby="acerca-titulo">
+      <div class="hero-background"></div>
       <div class="container hero-inner">
-        <div class="hero-copy">
-          <h1 id="acerca-titulo">EnergIA: eficiencia energética al alcance</h1>
-          <p>
-            Transformamos datos complejos de tu entorno en acciones claras y simples para que reduzcas tu factura de luz. EnergIA te guía en tiempo real, desde cualquier dispositivo. Ideal para hogares, escuelas y negocios.
-          </p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="#dashboard" id="cta-demo" aria-label="Probar demo de 60 segundos">Prueba el panel ambiental</a>
-            <a class="btn btn-secondary" href="#ods7">Ver contribución ODS 7</a>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <span class="hero-tag"> Innovación en Eficiencia Energética</span>
+            <h1 id="acerca-titulo">Controla tu consumo energético de forma inteligente</h1>
+            <p class="hero-description">
+              Transformamos datos complejos de tu entorno en <strong>acciones claras y simples</strong> para que reduzcas tu factura de luz. EnergIA te guía en tiempo real, desde cualquier dispositivo.
+            </p>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-number" data-count="15">0</span><span>%</span>
+                <span class="stat-label">Ahorro promedio</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-count="24">0</span><span>/7</span>
+                <span class="stat-label">Monitoreo</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-count="1000">0</span><span>+</span>
+                <span class="stat-label">Usuarios</span>
+              </div>
+            </div>
+            <div class="hero-cta">
+              <a class="btn btn-primary pulse" href="#dashboard" id="cta-demo" aria-label="Probar demo de 60 segundos">
+                <span class="btn-icon">⚡</span> Prueba el panel ambiental
+              </a>
+              <a class="btn btn-secondary" href="#ods7">
+                <span class="btn-icon">🌱</span> Ver contribución ODS 7
+              </a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="app-preview-card">
+              <div class="app-header">
+                <div class="app-actions">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <h3>EnergIA App</h3>
+              </div>
+              <div class="app-stats">
+                <div class="stat-circle primary">
+                  <span class="stat-icon">🌡️</span>
+                  <span class="stat-value">24°C</span>
+                  <span class="stat-label">Temperatura</span>
+                </div>
+                <div class="stat-circle secondary">
+                  <span class="stat-icon">💧</span>
+                  <span class="stat-value">65%</span>
+                  <span class="stat-label">Humedad</span>
+                </div>
+              </div>
+              <div class="app-features">
+                <div class="feature">
+                  <span>Panel de control</span>
+                </div>
+                <div class="feature">
+                  <span class="feature-icon">💡</span>
+                  <span>Consejos de ahorro</span>
+                </div>
+                <div class="feature">
+                  <span class="feature-icon">⚙️</span>
+                  <span>Ajustes</span>
+                </div>
+              </div>
+              <div class="app-footer">
+                <span class="battery">85%</span>
+                <span class="time">19:11</span>
+                <span class="network">📶</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="hero-badges">
-          <div class="badge">Enfoque: Hogares y Comunidades</div>
-          <div class="badge">Datos: Temperatura, Humedad y Luz</div>
-          <div class="badge">Acceso: Web y Móvil (PWA)</div>
+          <div class="badge">
+            <span class="badge-icon">🏠</span>
+            <span>Hogares y Comunidades</span>
+          </div>
+          <div class="badge">
+            <span class="badge-icon">📊</span>
+            <span>Datos en Tiempo Real</span>
+          </div>
+          <div class="badge">
+            <span class="badge-icon">📱</span>
+            <span>Web y Móvil</span>
+          </div>
         </div>
       </div>
     </section>
