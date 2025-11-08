@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="responsive.css" />
   <script src="app.js" defer></script>
   <script src="js/hero-animations.js" defer></script>
+  <script src="js/dashboard.js" defer></script>
   <script>
     // Cargar el header
     fetch('header.html')
@@ -129,73 +130,168 @@
       </div>
     </section>
 
-    <!-- Dashboard (maquetado) -->
+    <!-- Dashboard Mejorado -->
     <section id="dashboard" class="dashboard anim" role="region" aria-labelledby="dashboard-titulo">
       <div class="container">
-        <h2 id="dashboard-titulo">Panel ambiental (demo)</h2>   
-        <p class="lead">Visualiza cómo el ambiente de tu espacio impacta tu consumo y obtén recomendaciones al instante.</p> 
-        <p class="lead">Este componente interactivo permite simular sensores de temperatura, humedad y luz, ofreciendo una experiencia 
-          visual dinámica donde el usuario puede ajustar los valores y ver en tiempo real cómo la plataforma reacciona con recomendaciones 
-          personalizadas. Ideal para explorar el comportamiento del sistema sin necesidad de hardware físico.</p>
-
-        <!-- Tarjeta ZONA / DAC (visual) -->
-        <aside class="dac-card" aria-label="Tarjeta de zona y estatus DAC">
-          <div class="dac-row">
-            <div><strong>Zona:</strong> 1C</div>
-            <div><strong>Límite DAC:</strong> 250 kWh/mes</div>
-            <div><strong>Estatus:</strong> Dentro del límite</div>
+        <header class="dashboard-header">
+          <div>
+            <h2 id="dashboard-titulo">Panel de Control Ambiental</h2>   
+            <p class="lead">Monitorea y optimiza el ambiente de tu espacio en tiempo real</p>
           </div>
-        </aside>
+          
+        </header>
+        <!-- Barra de Estado -->
+        <div class="status-bar">
+          <div class="status-item">
+            <span class="status-icon">🏠</span>
+            <span class="status-label">Zona 1C:</span>
+            <span class="status-value">Área de trabajo principal</span>
+          </div>
+          <div class="status-divider">|</div>
+          <div class="status-item">
+            <span class="status-icon">⚡</span>
+            <span class="status-label">Consumo Actual:</span>
+            <span class="status-value">1.2 kW</span>
+            <span class="trend up">+5%</span>
+          </div>
+          <div class="status-divider">|</div>
+          <div class="status-item">
+            <span class="status-icon">🌱</span>
+            <span class="status-label">Eficiencia:</span>
+            <span class="status-value">85%</span>
+            <span class="trend down">-2%</span>
+          </div>
+        </div>
 
+        <!-- Tarjeta de Sensores -->
         <div class="sensor-grid">
           <article class="sensor-card" aria-label="Temperatura ambiente">
-            <div class="sensor-icon" aria-hidden="true">🌡️</div>
-            <h3>Temperatura</h3>
-            <div class="sensor-value" id="val-temp">26&nbsp;°C</div>
-            <div class="bar-wrap" aria-hidden="true"><div id="bar-temp" class="bar" style="width:60%"></div></div>
-            <p id="desc-temp">Rango cómodo. No actives A/C.</p>
+            <div class="sensor-header">
+              <div class="sensor-icon" aria-hidden="true">🌡️</div>
+              <h3>Temperatura</h3>
+              <span class="sensor-status good">Óptimo</span>
+            </div>
+            <div class="sensor-value" id="val-temp">26°C</div>
+            <div class="sensor-range">
+              <span>18°C</span>
+              <div class="range-container">
+                <div class="range-fill" id="bar-temp" style="width: 60%;"></div>
+              </div>
+              <span>35°C</span>
+            </div>
+            <div class="sensor-trend">
+              <span class="trend up">+2°C en la última hora</span>
+            </div>
+            <p id="desc-temp" class="sensor-desc">Rango cómodo. No se requiere ajuste de A/C.</p>
           </article>
 
           <article class="sensor-card" aria-label="Humedad relativa">
-            <div class="sensor-icon" aria-hidden="true">💧</div>
-            <h3>Humedad</h3>
-            <div class="sensor-value" id="val-hum">65&nbsp;%</div>
-            <div class="bar-wrap" aria-hidden="true"><div id="bar-hum" class="bar" style="width:65%"></div></div>
-            <p id="desc-hum">Humedad media. Ventila 5–10 min.</p>
+            <div class="sensor-header">
+              <div class="sensor-icon" aria-hidden="true">💧</div>
+              <h3>Humedad</h3>
+              <span class="sensor-status warning">Moderado</span>
+            </div>
+            <div class="sensor-value" id="val-hum">65%</div>
+            <div class="sensor-range">
+              <span>20%</span>
+              <div class="range-container">
+                <div class="range-fill" id="bar-hum" style="width: 65%;"></div>
+              </div>
+              <span>90%</span>
+            </div>
+            <div class="sensor-trend">
+              <span class="trend stable">Sin cambios recientes</span>
+            </div>
+            <p id="desc-hum" class="sensor-desc">Humedad media. Considera ventilar el espacio.</p>
           </article>
 
           <article class="sensor-card" aria-label="Luz ambiental">
-            <div class="sensor-icon" aria-hidden="true">☀️</div>
-            <h3>Luz Ambiental</h3>
-            <div class="sensor-value" id="val-lux">800&nbsp;lux</div>
-            <div class="bar-wrap" aria-hidden="true"><div id="bar-luz" class="bar" style="width:80%"></div></div>
-            <p id="desc-lux">Luz natural suficiente. Apaga focos.</p>
+            <div class="sensor-header">
+              <div class="sensor-icon" aria-hidden="true">☀️</div>
+              <h3>Luz Ambiental</h3>
+              <span class="sensor-status good">Óptimo</span>
+            </div>
+            <div class="sensor-value" id="val-lux">800 lux</div>
+            <div class="sensor-range">
+              <span>50</span>
+              <div class="range-container">
+                <div class="range-fill" id="bar-luz" style="width: 80%;"></div>
+              </div>
+              <span>1200</span>
+            </div>
+            <div class="sensor-trend">
+              <span class="trend down">-150 lux en 30 min</span>
+            </div>
+            <p id="desc-lux" class="sensor-desc">Iluminación adecuada. Apaga luces innecesarias.</p>
           </article>
         </div>
 
-        <!-- Controles de simulación (solo UI) -->
-        <section id="demo" class="simuladores" aria-labelledby="sim-titulo">
-          <h3 id="sim-titulo">Simular sensores</h3>
-          <div class="sliders">
-            <label for="slider-temp">Temperatura (°C)</label>
-            <input type="range" id="slider-temp" min="18" max="35" value="26" />
-            <label for="slider-hum">Humedad (%)</label>
-            <input type="range" id="slider-hum" min="20" max="90" value="65" />
-            <label for="slider-lux">Luz (lux)</label>
-            <input type="range" id="slider-lux" min="50" max="1200" value="800" />
+        <!-- Gráfico de Tendencias -->
+        <div class="trends-card">
+          <div class="trends-header">
+            <h3>Tendencias del Día</h3>
+            <div class="trends-legend">
+              <span class="legend-item"><span class="legend-color temp"></span> Temperatura</span>
+              <span class="legend-item"><span class="legend-color hum"></span> Humedad</span>
+              <span class="legend-item"><span class="legend-color lux"></span> Luz</span>
+            </div>
           </div>
-        </section>
-
-        <!-- Recomendación inteligente -->
-        <div class="recommendation" role="status" aria-live="polite">
-          <div class="recommendation-icon" aria-hidden="true">🧠</div>
-          <div class="recommendation-text">
-            <h3>Recomendación Inteligente</h3>
-            <p id="reco-text">
-              Luz natural alta detectada. Si apagas 2 focos de 60W por 4 horas, ahorras aprox. <strong>0.48 kWh</strong>.
-            </p>
+          <div class="trends-chart" id="trends-chart">
+            <!-- Contenedor para el gráfico generado por JavaScript -->
+            <div class="chart-placeholder">
+              <p>Visualización de tendencias de las últimas 12 horas</p>
+              <div class="chart-bars"></div>
+              <div class="chart-labels"></div>
+            </div>
           </div>
         </div>
+
+        <!-- Controles y Recomendaciones -->
+        <div class="dashboard-bottom">
+          <!-- Controles de simulación -->
+          <section id="demo" class="simuladores" aria-labelledby="sim-titulo">
+            <h3 id="sim-titulo">Simulador de Condiciones</h3>
+            <p class="simulator-desc">Ajusta los controles para ver cómo diferentes condiciones afectan las recomendaciones.</p>
+            <div class="sliders">
+              <div class="slider-group">
+                <label for="slider-temp">Temperatura: <span id="temp-value">26°C</span></label>
+                <input type="range" id="slider-temp" min="18" max="35" value="26" class="slider" />
+                <div class="slider-ticks">
+                  <span>18°C</span><span>22°C</span><span>26°C</span><span>30°C</span><span>35°C</span>
+                </div>
+              </div>
+              
+              <div class="slider-group">
+                <label for="slider-hum">Humedad: <span id="hum-value">65%</span></label>
+                <input type="range" id="slider-hum" min="20" max="90" value="65" class="slider" />
+                <div class="slider-ticks">
+                  <span>20%</span><span>40%</span><span>60%</span><span>80%</span><span>90%</span>
+                </div>
+              </div>
+              
+              <div class="slider-group">
+                <label for="slider-lux">Luz: <span id="lux-value">800 lux</span></label>
+                <input type="range" id="slider-lux" min="50" max="1200" value="800" class="slider" />
+                <div class="slider-ticks">
+                  <span>50</span><span>350</span><span>650</span><span>950</span><span>1200</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Recomendación inteligente -->
+          <div class="recommendation-card" role="status" aria-live="polite">
+            <div class="recommendation-inner">
+              <span class="recommendation-icon" aria-hidden="true">💡</span>
+              <div class="recommendation-content">
+                <p id="reco-text">
+                  <strong>Luz natural alta detectada:</strong> Apaga luces innecesarias para ahorrar energía.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </section>
 
