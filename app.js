@@ -1,6 +1,5 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-
   // ---------- ELEMENTOS (Dashboard) ----------
   const tempSlider = document.getElementById("slider-temp");
   const humSlider = document.getElementById("slider-hum");
@@ -10,6 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const valHum = document.getElementById("val-hum");
   const valLux = document.getElementById("val-lux");
   const recoText = document.getElementById("reco-text");
+  
+  // Elementos del gráfico de tendencias
+  const trendsChart = document.getElementById("trends-chart");
+  const chartBars = document.querySelector('.chart-bars');
+  const chartLabels = document.querySelector('.chart-labels');
 
   // ---------- FUNCIONES DE SIMULACIÓN (Dashboard) ----------
   function actualizarDashboard() {
@@ -25,22 +29,131 @@ document.addEventListener('DOMContentLoaded', () => {
     valHum.textContent = `${hum} %`;
     valLux.textContent = `${lux} lux`;
 
-    let mensaje = "";
+    let recomendaciones = [];
 
     // Temperatura
-    if (temp > 30) mensaje += "Temperatura alta. Usa ventilación natural o evita el A/C prolongado. ";
-    else if (temp < 20) mensaje += "Temperatura baja. Aprovecha la luz solar y evita calefactores innecesarios. ";
-    else mensaje += "Temperatura agradable. No se requiere climatización. ";
+    if (temp > 30) recomendaciones.push("🌡️ Usa ventilación natural o reduce el A/C");
+    else if (temp < 20) recomendaciones.push("🌡️ Aprovecha la luz solar para calentar");
 
     // Humedad
-    if (hum > 75) mensaje += "Alta humedad. Ventila el espacio. ";
-    else if (hum < 30) mensaje += "Humedad baja. Puedes usar plantas o recipientes con agua para equilibrar. ";
+    if (hum > 75) recomendaciones.push("💧 Ventila para reducir humedad");
+    else if (hum < 30) recomendaciones.push("💧 Usa plantas o humedecedor");
 
     // Luz
-    if (lux > 700) mensaje += "Excelente luz natural. Apaga las luces interiores para ahorrar.";
-    else if (lux < 300) mensaje += "Luz baja. Usa focos LED eficientes.";
+    if (lux > 700) recomendaciones.push("💡 Apaga luces innecesarias");
+    else if (lux < 300) recomendaciones.push("💡 Usa focos LED eficientes");
 
-    recoText.textContent = mensaje;
+    // Si no hay recomendaciones, mostrar mensaje positivo
+    if (recomendaciones.length === 0) {
+      recoText.innerHTML = '<span class="status-good">✓ Condiciones óptimas detectadas</span>';
+    } else {
+      recoText.innerHTML = recomendaciones.join(' • ');
+    }
+  }
+
+  // ---------- GRÁFICO DE TENDENCIAS ----------
+  function actualizarGraficoTendencias() {
+    if (!chartBars || !chartLabels) return;
+    
+    // Limpiar gráfico existente
+    chartBars.innerHTML = '';
+    chartLabels.innerHTML = '';
+    
+    // Generar datos de ejemplo para las últimas 12 horas
+    const ahora = new Date();
+    const horas = [];
+    const datosTemp = [];
+    const datosHum = [];
+    const datosLux = [];
+    
+    // Generar datos aleatorios basados en los valores actuales
+    const tempActual = tempSlider ? parseInt(tempSlider.value) : 25;
+    const humActual = humSlider ? parseInt(humSlider.value) : 50;
+    const luxActual = luxSlider ? parseInt(luxSlider.value) : 500;
+    
+    for (let i = 0; i < 12; i++) {
+      // Hora actual - (11 - i) horas
+      const hora = new Date(ahora);
+      hora.setHours(hora.getHours() - (11 - i));
+      
+      // Formato de hora (HH:MM)
+      const horaStr = hora.getHours().toString().padStart(2, '0') + ':' + 
+                     hora.getMinutes().toString().padStart(2, '0');
+      
+      // Generar datos con variación aleatoria
+      const variacion = (Math.random() - 0.5) * 0.4; // -0.2 a 0.2
+      const temp = Math.max(15, Math.min(35, tempActual * (1 + (i/15) * (Math.random() - 0.5))));
+      const hum = Math.max(20, Math.min(90, humActual * (1 + (i/20) * (Math.random() - 0.5))));
+      const lux = Math.max(0, Math.min(1000, luxActual * (1 + (i/10) * (Math.random() - 0.5))));
+      
+      horas.push(horaStr);
+      datosTemp.push(temp);
+      datosHum.push(hum);
+      datosLux.push(lux);
+    }
+    
+    // Encontrar máximos para escalar las barras
+    const maxTemp = Math.max(...datosTemp, 35);
+    const maxHum = Math.max(...datosHum, 90);
+    const maxLux = Math.max(...datosLux, 1000);
+    
+    // Crear barras del gráfico
+    for (let i = 0; i < 12; i++) {
+      // Crear contenedor de barras agrupadas
+      const barGroup = document.createElement('div');
+      barGroup.className = 'bar-group';
+      barGroup.style.left = `${(i * 8.33) + 2}%`;
+      
+      // Crear barras individuales
+      const barTemp = document.createElement('div');
+      barTemp.className = 'chart-bar temp';
+      barTemp.style.height = `${(datosTemp[i] / maxTemp) * 80}%`;
+      barTemp.style.bottom = '30%';
+      barTemp.style.left = '0%';
+      barTemp.style.width = '30%';
+      barTemp.title = `Temp: ${Math.round(datosTemp[i])}°C`;
+      
+      const barHum = document.createElement('div');
+      barHum.className = 'chart-bar hum';
+      barHum.style.height = `${(datosHum[i] / maxHum) * 80}%`;
+      barHum.style.bottom = '30%';
+      barHum.style.left = '35%';
+      barHum.style.width = '30%';
+      barHum.title = `Humedad: ${Math.round(datosHum[i])}%`;
+      
+      const barLux = document.createElement('div');
+      barLux.className = 'chart-bar lux';
+      barLux.style.height = `${(datosLux[i] / maxLux) * 80}%`;
+      barLux.style.bottom = '30%';
+      barLux.style.left = '70%';
+      barLux.style.width = '30%';
+      barLux.title = `Luz: ${Math.round(datosLux[i])} lux`;
+      
+      // Agregar barras al grupo
+      barGroup.appendChild(barTemp);
+      barGroup.appendChild(barHum);
+      barGroup.appendChild(barLux);
+      
+      // Agregar etiqueta de hora
+      if (i % 2 === 0) { // Mostrar etiquetas cada 2 horas
+        const label = document.createElement('div');
+        label.className = 'chart-label';
+        label.textContent = horas[i];
+        // Ajustar la posición para que las etiquetas estén centradas debajo de los grupos de barras
+        label.style.left = `${(i * 8.33) + 4}%`;
+        label.style.transform = 'translateX(-50%)';
+        label.style.position = 'absolute';
+        chartLabels.appendChild(label);
+      }
+      
+      chartBars.appendChild(barGroup);
+    }
+  }
+  
+  // Actualizar gráfico cuando cambien los sliders
+  function actualizarDashboardConGrafico() {
+    actualizarDashboard();
+    actualizarGraficoTendencias();
   }
 
   // ---------- EVENTOS E INICIALIZACIÓN (Dashboard) ----------
@@ -49,10 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Comprobamos que los sliders existan antes de añadir eventos
   if (slidersDashboard.every(slider => slider !== null)) {
     slidersDashboard.forEach(slider =>
-      slider.addEventListener("input", actualizarDashboard)
+      slider.addEventListener("input", actualizarDashboardConGrafico)
     );
     // ---------- INICIALIZAR ----------
-    actualizarDashboard();
+    actualizarDashboardConGrafico();
+  } else if (trendsChart) {
+    // Si no hay sliders pero sí el gráfico, inicializar solo el gráfico
+    actualizarGraficoTendencias();
   }
 
   // --- Chatbot EnergIA ---
